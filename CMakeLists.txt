@@ -47,24 +47,17 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/FreeRTOS-Kernel/portable/riscv/include
 
     ${PROJECT_SOURCE_DIR}/bsp/board
-    #only for test
-    # ${PROJECT_SOURCE_DIR}/test/include
 )
 link_directories(
     .
-    ${CMAKE_CURRENT_LIST_DIR}/test  #only for test
     ${CMAKE_CURRENT_LIST_DIR}/bsp/project
     ${CMAKE_CURRENT_LIST_DIR}/bsp/board
 )
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE 
     -Wl,--start-group
-    test_main        #only for test
     app_main
     -Wl,--end-group
 )
-
-#only for test
-add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/test)
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/bsp/project)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/bsp/board)
