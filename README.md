@@ -1,15 +1,15 @@
 # sample_project for esp
 
---add submodule espidf to root dir (/)
+-- add submodule espidf to root dir (/)
 
---cd esp-idf, install.xxx target, export.xxx
+-- cd esp-idf, install.xxx target, export.xxx
 
---cd /bsp/project
+-- cd /bsp/project
 
---mkdir build && cd build 
+-- mkdir build && cd build 
 
---cmake ../../.. -G Ninja 
+-- cmake ../../.. -G Ninja 
 
---ninja 
+-- ninja 
 
---ninja flash
+-- ninja flash
