@@ -1,4 +1,4 @@
-# minsample_project for esp
+# sample_project for esp
 
 # Usage
 ## add submodule espidf to root dir (/)
