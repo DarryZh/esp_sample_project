@@ -1,13 +1,19 @@
-# sample_project for esp
+# sample_project for esp32
 
 # Usage
 ## cd esp_sample_project
 
-## git submodule update --init --recursive
+## git submodule init
 
-## cd esp-idf, ./install.xxx esp32c3, ./export.xxx
+## git submodule update --recursice
 
-## cd /bsp/project
+## cd esp-idf
+
+## if you're windows user, do .\install.bat esp32c3. else if you're linux user, do ./install.sh esp32c3
+
+## if you're windows user, do .\export.bat. else if you're linux user, do . ./export.sh
+
+## cd ../bsp/project
 
 ## mkdir build && cd build 
 
