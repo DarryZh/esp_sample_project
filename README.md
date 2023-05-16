@@ -3,9 +3,7 @@
 # Usage
 ## cd esp_sample_project
 
-## git submodule init
-
-## git submodule update --recursice
+## git submodule update --init --recursive
 
 ## cd esp-idf
 
