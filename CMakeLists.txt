@@ -20,12 +20,13 @@ set(COMPONENTS
     riscv
     espcoredump
     driver
-    console
-    vfs
+    esptool_py
+    log
+    partition_table
 )
 
 list(APPEND EXTRA_COMPONENT_DIRS "${CMAKE_CURRENT_LIST_DIR}/bsp/project/components")
-set(SDKCONFIG "${CMAKE_CURRENT_LIST_DIR}/bsp/project/sdkconfig")
+set(sdkconfig "${CMAKE_CURRENT_LIST_DIR}/bsp/project/sdkconfig")
 
 project(sample_project)
 
@@ -45,6 +46,8 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/FreeRTOS-Kernel/include
     ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/esp_additions/include/freertos
     ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/FreeRTOS-Kernel/portable/riscv/include
+    ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/config/include/freertos
+    ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/config/riscv/include
 
     ${PROJECT_SOURCE_DIR}/bsp/board
 )

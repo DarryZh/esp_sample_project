@@ -1,15 +1,19 @@
 # sample_project for esp
 
 # Usage
-## add submodule espidf to root dir (/)
+## cd esp_sample_project
 
-## cd esp-idf, install.xxx target, export.xxx
+## git submodule update --init --recursive
+
+## cd esp-idf, ./install.xxx esp32c3, ./export.xxx
 
 ## cd /bsp/project
 
 ## mkdir build && cd build 
 
 ## cmake ../../.. -G Ninja 
+
+## ninja menuconfig
 
 ## ninja 
 
