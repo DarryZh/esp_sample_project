@@ -8,7 +8,7 @@ sudo apt-get install git wget flex bison gperf python3 python3-venv python3-setu
 
 ## cd esp_sample_project
 
-## git submodule update --init --recursive
+## git submodule update --init
 
 ## cd esp-idf
 
