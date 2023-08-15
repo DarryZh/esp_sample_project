@@ -157,7 +157,7 @@ static bool other_cpu_startup_idle_hook_cb(void)
 
 static void main_task(void* args)
 {
-    ESP_LOGI(MAIN_TAG, "Started on CPU%d", xPortGetCoreID());
+    ESP_EARLY_LOGI(MAIN_TAG, "Started on CPU%d", xPortGetCoreID());
 #if !CONFIG_FREERTOS_UNICORE
     // Wait for FreeRTOS initialization to finish on other core, before replacing its startup stack
     esp_register_freertos_idle_hook_for_cpu(other_cpu_startup_idle_hook_cb, !xPortGetCoreID());
@@ -203,9 +203,9 @@ static void main_task(void* args)
     Note: Be careful when changing the "Calling app_main()" log below as multiple pytest scripts expect this log as a
     start-of-application marker.
     */
-    ESP_LOGI(MAIN_TAG, "Calling app_main()");
+    ESP_EARLY_LOGI(MAIN_TAG, "Calling app_main()");
     extern void app_main(void);
     app_main();
-    ESP_LOGI(MAIN_TAG, "Returned from app_main()");
+    ESP_EARLY_LOGI(MAIN_TAG, "Returned from app_main()");
     vTaskDelete(NULL);
 }
