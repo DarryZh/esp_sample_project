@@ -46,8 +46,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/FreeRTOS-Kernel/include
     ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/esp_additions/include/freertos
     ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/FreeRTOS-Kernel/portable/riscv/include
-    ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/config/include/freertos
-    ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/config/riscv/include
+    ${PROJECT_SOURCE_DIR}/bsp/project/components/freertos/esp_additions/arch/riscv/include
 
     ${PROJECT_SOURCE_DIR}/bsp/board
 )

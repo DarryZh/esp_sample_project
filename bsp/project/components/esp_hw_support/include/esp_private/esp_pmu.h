@@ -96,7 +96,11 @@ extern "C" {
 #define PMU_SLEEP_PD_MODEM          BIT(2)
 #define PMU_SLEEP_PD_HP_PERIPH      BIT(3)
 #define PMU_SLEEP_PD_CPU            BIT(4)
-#define PMU_SLEEP_PD_AON            BIT(5)
+
+#if SOC_PM_SUPPORT_HP_AON_PD
+#define PMU_SLEEP_PD_HP_AON         BIT(5)
+#endif
+
 #define PMU_SLEEP_PD_MEM_G0         BIT(6)
 #define PMU_SLEEP_PD_MEM_G1         BIT(7)
 #define PMU_SLEEP_PD_MEM_G2         BIT(8)
@@ -235,9 +239,24 @@ void pmu_sleep_init(const pmu_sleep_config_t *config, bool dslp);
 uint32_t pmu_sleep_start(uint32_t wakeup_opt, uint32_t reject_opt, uint32_t lslp_mem_inf_fpu, bool dslp);
 
 /**
+ * @brief   Finish sleep process settings and get sleep reject status
+ * @return  return sleep reject status
+ */
+bool pmu_sleep_finish(void);
+
+/**
  * @brief Initialize PMU related power/clock/digital parameters and functions
  */
 void pmu_init(void);
+
+/**
+ * @brief Enable or disable system clock in PMU HP sleep state
+ *
+ * This API only used for fix BLE 40 MHz low power clock source issue
+ *
+ * @param enable  true to enable, false to disable
+ */
+void pmu_sleep_enable_hp_sleep_sysclk(bool enable);
 
 
 #endif //#if SOC_PMU_SUPPORTED

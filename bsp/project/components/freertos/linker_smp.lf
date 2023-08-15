@@ -208,6 +208,7 @@ entries:
         # - Most functions are called from an ISR context, except for scheduler/task init/deinit functions
         # --------------------------------------------------------------------------------------------------------------
         if IDF_TARGET_ARCH_XTENSA = y:
+            port:vPortSetupTimer (default)
             port:xPortStartScheduler (default)
             port:vPortEndScheduler (default)
             port:pvPortMalloc (default)
@@ -225,6 +226,7 @@ entries:
         # - Most functions are called from an ISR context, except for scheduler/task init/deinit functions
         # --------------------------------------------------------------------------------------------------------------
         if IDF_TARGET_ARCH_RISCV = y:
+            port:vPortSetupTimer (default)
             port:xPortStartScheduler (default)
             port:vPortEndScheduler (default)
             port:pvPortMalloc (default)

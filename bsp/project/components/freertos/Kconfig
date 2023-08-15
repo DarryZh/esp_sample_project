@@ -154,7 +154,6 @@ menu "FreeRTOS"
         config FREERTOS_ENABLE_BACKWARD_COMPATIBILITY
             bool "configENABLE_BACKWARD_COMPATIBILITY"
             default n
-            depends on !IDF_TARGET_LINUX
             help
                 Enable backward compatibility with APIs prior to FreeRTOS v8.0.0. (see
                 configENABLE_BACKWARD_COMPATIBILITY documentation for more details).
@@ -263,6 +262,9 @@ menu "FreeRTOS"
             # Minimal value is 2 because of a check in FreeRTOS.h (search configEXPECTED_IDLE_TIME_BEFORE_SLEEP)
             help
                 FreeRTOS will enter light sleep mode if no tasks need to run for this number of ticks.
+                You can enable PM_PROFILING feature in esp_pm components and dump the sleep status with
+                esp_pm_dump_locks, if the proportion of rejected sleeps is too high, please increase
+                this value to improve scheduling efficiency
 
     endmenu # Kernel
 
@@ -480,11 +482,6 @@ menu "FreeRTOS"
     endmenu # Port
 
     # Hidden or compatibility options
-
-    config FREERTOS_PORT
-        # This invisible config value indicates the FreeRTOS is selected as the current RTOS used by ESP-IDF
-        bool
-        default y
 
     config FREERTOS_NO_AFFINITY
         # This invisible config value sets the value of tskNO_AFFINITY in task.h.

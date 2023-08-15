@@ -3321,7 +3321,7 @@ core 0 during startup.
 void vTaskStartSchedulerOtherCores( void );
 #endif // configNUM_CORES > 1
 
-#include "freertos/idf_additions.h"
+#include "idf_additions.h"
 
 #endif //ESP_PLATFORM
 

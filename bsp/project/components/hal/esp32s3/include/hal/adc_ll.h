@@ -34,7 +34,7 @@ extern "C" {
                     Oneshot
 ---------------------------------------------------------------*/
 #define ADC_LL_DATA_INVERT_DEFAULT(PERIPH_NUM)         (0)
-#define ADC_LL_SAR_CLK_DIV_DEFAULT(PERIPH_NUM)         ((PERIPH_NUM==0)? 2 : 1)
+#define ADC_LL_SAR_CLK_DIV_DEFAULT(PERIPH_NUM)         (1)
 
 /*---------------------------------------------------------------
                     DMA
@@ -562,6 +562,7 @@ static inline uint32_t adc_ll_pwdet_get_cct(void)
  *
  * @param manage Set ADC power status.
  */
+__attribute__((always_inline))
 static inline void adc_ll_digi_set_power_manage(adc_ll_power_t manage)
 {
     if (manage == ADC_LL_POWER_SW_ON) {

@@ -967,14 +967,6 @@ config SOC_SHA_SUPPORT_SHA512_T
     bool
     default y
 
-config SOC_MPI_MEM_BLOCKS_NUM
-    int
-    default 4
-
-config SOC_MPI_OPERATIONS_NUM
-    int
-    default 3
-
 config SOC_RSA_MAX_BIT_LEN
     int
     default 4096
@@ -1187,7 +1179,7 @@ config SOC_SPI_MEM_SUPPORT_OPI_MODE
     bool
     default y
 
-config SOC_SPI_MEM_SUPPORT_TIMING_TUNING
+config SOC_SPI_MEM_SUPPORT_TIME_TUNING
     bool
     default y
 
@@ -1199,15 +1191,15 @@ config SOC_SPI_MEM_SUPPORT_WRAP
     bool
     default y
 
-config SOC_MEMSPI_TIMING_TUNING_BY_MSPI_DELAY
-    bool
-    default y
-
-config SOC_MEMSPI_CORE_CLK_SHARED_WITH_PSRAM
-    bool
-    default y
-
 config SOC_COEX_HW_PTI
+    bool
+    default y
+
+config SOC_EXTERNAL_COEX_ADVANCE
+    bool
+    default n
+
+config SOC_EXTERNAL_COEX_LEADER_TX_LINE
     bool
     default y
 
@@ -1268,6 +1260,10 @@ config SOC_BLE_50_SUPPORTED
     default y
 
 config SOC_BLE_DEVICE_PRIVACY_SUPPORTED
+    bool
+    default y
+
+config SOC_BLUFI_SUPPORTED
     bool
     default y
 

@@ -417,7 +417,7 @@ esp_err_t esp_sleep_pd_config(esp_sleep_pd_domain_t domain,
  *
  * This function does not return.
  */
-void esp_deep_sleep_start(void) __attribute__((noreturn));
+void esp_deep_sleep_start(void) __attribute__((__noreturn__));
 
 /**
  * @brief Enter light sleep with the configured wakeup options
@@ -441,21 +441,9 @@ esp_err_t esp_light_sleep_start(void);
  * Call to this function is equivalent to a call to esp_deep_sleep_enable_timer_wakeup
  * followed by a call to esp_deep_sleep_start.
  *
- * esp_deep_sleep does not shut down WiFi, BT, and higher level protocol
- * connections gracefully.
- * Make sure relevant WiFi and BT stack functions are called to close any
- * connections and deinitialize the peripherals. These include:
- *     - esp_bluedroid_disable
- *     - esp_bt_controller_disable
- *     - esp_wifi_stop
- *
- * This function does not return.
- *
- * @note The device will wake up immediately if the deep-sleep time is set to 0
- *
  * @param time_in_us  deep-sleep time, unit: microsecond
  */
-void esp_deep_sleep(uint64_t time_in_us) __attribute__((noreturn));
+void esp_deep_sleep(uint64_t time_in_us) __attribute__((__noreturn__));
 
 
 /**

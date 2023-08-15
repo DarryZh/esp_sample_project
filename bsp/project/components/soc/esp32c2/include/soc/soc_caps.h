@@ -179,6 +179,9 @@
 
 /*--------------------------- SHA CAPS ---------------------------------------*/
 
+/* Due to very limited availability of the DMA channels, DMA support for the SHA peripheral is disabled */
+// #define SOC_SHA_SUPPORT_DMA             (1)
+
 /* The SHA engine is able to resume hashing from a user */
 #define SOC_SHA_SUPPORT_RESUME          (1)
 
@@ -275,8 +278,9 @@
 /*-------------------------- COEXISTENCE HARDWARE PTI CAPS -------------------------------*/
 #define SOC_COEX_HW_PTI                 (1)
 
-/*-------------------------- HARDWARE ADVANCED EXTERNAL COEXISTENCE CAPS -------------------*/
-#define SOC_EXTERNAL_COEX_ADVANCE       (1)
+/*-------------------------- EXTERNAL COEXISTENCE CAPS -------------------------------------*/
+#define SOC_EXTERNAL_COEX_ADVANCE              (1) /*!< HARDWARE ADVANCED EXTERNAL COEXISTENCE CAPS */
+#define SOC_EXTERNAL_COEX_LEADER_TX_LINE       (0) /*!< EXTERNAL COEXISTENCE TX LINE CAPS */
 
 /*--------------- PHY REGISTER AND MEMORY SIZE CAPS --------------------------*/
 #define SOC_PHY_DIG_REGS_MEM_SIZE       (21*4)
@@ -299,6 +303,7 @@
 
 /*------------------------------------ WI-FI CAPS ------------------------------------*/
 #define SOC_WIFI_HW_TSF                           (1)    /*!< Support hardware TSF */
+#define SOC_WIFI_FTM_SUPPORT                      (1)    /*!< Support FTM */
 #define SOC_WIFI_SUPPORT_VARIABLE_BEACON_WINDOW   (1)    /*!< Support delta early time for rf phy on/off */
 
 /*---------------------------------- Bluetooth CAPS ----------------------------------*/
@@ -307,3 +312,7 @@
 #define SOC_ESP_NIMBLE_CONTROLLER       (1)    /*!< Support BLE EMBEDDED controller V1 */
 #define SOC_BLE_50_SUPPORTED            (1)    /*!< Support Bluetooth 5.0 */
 #define SOC_BLE_DEVICE_PRIVACY_SUPPORTED (1)   /*!< Support BLE device privacy mode */
+#define SOC_BLUFI_SUPPORTED             (1)    /*!< Support BLUFI */
+
+/*------------------------------------- PHY CAPS -------------------------------------*/
+#define SOC_PHY_IMPROVE_RX_11B              (1)

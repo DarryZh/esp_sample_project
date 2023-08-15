@@ -14,9 +14,22 @@
 #include "soc/wdev_reg.h"
 #include "esp_private/esp_clk.h"
 
+#if SOC_LP_TIMER_SUPPORTED
+#include "hal/lp_timer_hal.h"
+#endif
+
 #if defined CONFIG_IDF_TARGET_ESP32S3
-#define APB_CYCLE_WAIT_NUM (1778) /* If APB clock is 80 MHz, maximum sampling frequency is around 45 KHz*/
+#define APB_CYCLE_WAIT_NUM (1778) /* If APB clock is 80 MHz, the maximum sampling frequency is around 45 KHz*/
                                   /* 45 KHz reading frequency is the maximum we have tested so far on S3 */
+#elif defined CONFIG_IDF_TARGET_ESP32C6
+#define APB_CYCLE_WAIT_NUM (160 * 16) /* On ESP32C6, we only read one byte at a time, then XOR the value with
+                                      * an asynchronous timer (see code below).
+                                      * The current value translates to a sampling frequency of around 62.5 KHz
+                                      * for reading 8 bit samples, which is the rate at which the RNG was tested,
+                                      * plus additional overhead for the calculation, making it slower. */
+#elif defined CONFIG_IDF_TARGET_ESP32H2
+#define APB_CYCLE_WAIT_NUM (96 * 16) /* Same reasoning as for ESP32C6, but the CPU frequency on ESP32H2 is
+                                      * 96MHz instead of 160 MHz */
 #else
 #define APB_CYCLE_WAIT_NUM (16)
 #endif
@@ -46,10 +59,21 @@ uint32_t IRAM_ATTR esp_random(void)
     static uint32_t last_ccount = 0;
     uint32_t ccount;
     uint32_t result = 0;
+#if SOC_LP_TIMER_SUPPORTED
+    for (size_t i = 0; i < sizeof(result); i++) {
+        do {
+            ccount = esp_cpu_get_cycle_count();
+            result ^= REG_READ(WDEV_RND_REG);
+        } while (ccount - last_ccount < cpu_to_apb_freq_ratio * APB_CYCLE_WAIT_NUM);
+        uint32_t current_rtc_timer_counter = (lp_timer_hal_get_cycle_count() & 0xFF);
+        result ^= ((result ^ current_rtc_timer_counter) & 0xFF) << (i * 8);
+    }
+#else
     do {
         ccount = esp_cpu_get_cycle_count();
         result ^= REG_READ(WDEV_RND_REG);
     } while (ccount - last_ccount < cpu_to_apb_freq_ratio * APB_CYCLE_WAIT_NUM);
+#endif
     last_ccount = ccount;
     return result ^ REG_READ(WDEV_RND_REG);
 }

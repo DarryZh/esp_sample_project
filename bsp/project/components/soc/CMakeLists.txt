@@ -83,10 +83,6 @@ if(CONFIG_SOC_MCPWM_SUPPORTED)
     list(APPEND srcs "${target}/mcpwm_periph.c")
 endif()
 
-if(CONFIG_SOC_MPI_SUPPORTED)
-    list(APPEND srcs "${target}/mpi_periph.c")
-endif()
-
 if(CONFIG_SOC_SDMMC_HOST_SUPPORTED)
     list(APPEND srcs "${target}/sdmmc_periph.c")
 endif()
@@ -100,9 +96,7 @@ if(CONFIG_SOC_TWAI_SUPPORTED)
 endif()
 
 if(CONFIG_SOC_IEEE802154_SUPPORTED)
-    if(NOT target STREQUAL "esp32h4")
-        list(APPEND srcs "${target}/ieee802154_periph.c")
-    endif()
+    list(APPEND srcs "${target}/ieee802154_periph.c")
 endif()
 
 if(CONFIG_SOC_USB_OTG_SUPPORTED)

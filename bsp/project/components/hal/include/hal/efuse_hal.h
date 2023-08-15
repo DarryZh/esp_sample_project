@@ -28,6 +28,13 @@ void efuse_hal_get_mac(uint8_t *mac);
 uint32_t efuse_hal_chip_revision(void);
 
 /**
+ * @brief Return block version
+ *
+ * @return Block version in format: Major * 100 + Minor
+ */
+uint32_t efuse_hal_blk_version(void);
+
+/**
  * @brief Is flash encryption currently enabled in hardware?
  *
  * Flash encryption is enabled if the FLASH_CRYPT_CNT efuse has an odd number of bits set.
@@ -35,14 +42,6 @@ uint32_t efuse_hal_chip_revision(void);
  * @return true if flash encryption is enabled.
  */
 bool efuse_hal_flash_encryption_enabled(void);
-
-/**
- * @brief Returns the status of whether the bootloader (and OTA)
- *        will check the maximum chip version or not.
- *
- * @return true - Skip the maximum chip version check.
- */
-bool efuse_hal_get_disable_wafer_version_major(void);
 
 /**
  * @brief Returns major chip version

@@ -82,6 +82,11 @@ __attribute__((always_inline)) static inline uint32_t efuse_ll_get_chip_ver_pkg(
     return EFUSE.rd_mac_spi_sys_3.pkg_version;
 }
 
+__attribute__((always_inline)) static inline uint32_t efuse_ll_get_ocode(void)
+{
+    return EFUSE.rd_sys_part1_data4.ocode;
+}
+
 /******************* eFuse control functions *************************/
 
 __attribute__((always_inline)) static inline bool efuse_ll_get_read_cmd(void)
@@ -113,6 +118,21 @@ __attribute__((always_inline)) static inline void efuse_ll_set_conf_read_op_code
 __attribute__((always_inline)) static inline void efuse_ll_set_conf_write_op_code(void)
 {
     EFUSE.conf.op_code = EFUSE_WRITE_OP_CODE;
+}
+
+__attribute__((always_inline)) static inline void efuse_ll_set_dac_num(uint8_t val)
+{
+    EFUSE.dac_conf.dac_num = val;
+}
+
+__attribute__((always_inline)) static inline void efuse_ll_set_dac_clk_div(uint8_t val)
+{
+    EFUSE.dac_conf.dac_clk_div = val;
+}
+
+__attribute__((always_inline)) static inline void efuse_ll_set_pwr_on_num(uint16_t val)
+{
+    EFUSE.wr_tim_conf1.pwr_on_num = val;
 }
 
 __attribute__((always_inline)) static inline void efuse_ll_set_pwr_off_num(uint16_t value)

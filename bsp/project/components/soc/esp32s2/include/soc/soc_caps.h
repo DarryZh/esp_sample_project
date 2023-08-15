@@ -361,10 +361,6 @@
 #define SOC_SHA_SUPPORT_SHA512_T        (1)
 
 
-/*--------------------------- MPI CAPS ---------------------------------------*/
-#define SOC_MPI_MEM_BLOCKS_NUM (4)
-#define SOC_MPI_OPERATIONS_NUM (3)
-
 /*--------------------------- RSA CAPS ---------------------------------------*/
 #define SOC_RSA_MAX_BIT_LEN    (4096)
 
@@ -453,6 +449,10 @@
 #define SOC_COEX_HW_PTI                 (1)
 /* ---------------------------- Compatibility ------------------------------- */
 // No contents
+
+/*-------------------------- EXTERNAL COEXISTENCE CAPS -------------------------------------*/
+#define SOC_EXTERNAL_COEX_ADVANCE              (0) /*!< HARDWARE ADVANCED EXTERNAL COEXISTENCE CAPS */
+#define SOC_EXTERNAL_COEX_LEADER_TX_LINE       (1) /*!< EXTERNAL COEXISTENCE TX LINE CAPS */
 
 /*-------------------------- Temperature Sensor CAPS -------------------------------------*/
 #define SOC_TEMPERATURE_SENSOR_SUPPORT_FAST_RC                (1)
