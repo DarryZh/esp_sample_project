@@ -5,5 +5,10 @@
 
 void app_main(void)
 {
-	printf("Helloworld!\n");
+	printf("Helloworld!\r\n");
+	while(true)
+	{
+		vTaskDelay(1000);
+		printf("Helloworld!\r\n");
+	}
 }
